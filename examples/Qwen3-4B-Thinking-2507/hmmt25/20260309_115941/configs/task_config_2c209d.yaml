@@ -1,0 +1,88 @@
+analysis_report: false
+api_url: http://0.0.0.0:30005/v1/chat/completions
+chat_template: null
+dataset_args:
+  hmmt25:
+    aggregation: mean_and_pass_at_k
+    dataset_id: evalscope/hmmt_feb_2025
+    default_subset: default
+    description: 'HMMT February 2025 (MathArena) is a challenging evaluation benchmark
+      derived from the Harvard-MIT Mathematics Tournament (HMMT) February 2025 competition,
+      one of the most prestigious and difficult high school math contests globally.The
+      benchmark focuses on advanced mathematical reasoning across four primary domains:
+      Algebra, Combinatorics, Geometry, and Number Theory.'
+    eval_split: train
+    extra_params: {}
+    few_shot_num: 0
+    few_shot_prompt_template: null
+    few_shot_random: false
+    filters: !!python/object/apply:collections.OrderedDict
+    - - - remove_until
+        - </think>
+    force_redownload: false
+    metric_list:
+    - acc:
+        numeric: true
+    name: hmmt25
+    output_types:
+    - generation
+    pretty_name: HMMT25
+    prompt_template: 'Problem:
+
+      {question}
+
+
+      Please reason step by step, and put your final answer within \boxed{{}}.
+
+      '
+    query_template: null
+    review_timeout: null
+    sandbox_config: {}
+    shuffle: false
+    shuffle_choices: false
+    subset_list:
+    - default
+    system_prompt: null
+    tags:
+    - Math
+    - Reasoning
+    train_split: null
+dataset_dir: /home/scbjtfy/.cache/modelscope/hub/datasets
+dataset_hub: modelscope
+datasets:
+- hmmt25
+debug: false
+eval_backend: Native
+eval_batch_size: 128
+eval_config: null
+eval_type: openai_api
+evalscope_version: 0.0.0_dev
+generation_config:
+  batch_size: 128
+  max_tokens: 81920
+  presence_penalty: 1.5
+  stream: true
+  temperature: 0.6
+  timeout: 120000
+  top_k: 20
+  top_p: 0.95
+ignore_errors: false
+judge_model_args: {}
+judge_strategy: auto
+judge_worker_num: 1
+limit: null
+model: Qwen/Qwen3-4B-Thinking-2507
+model_args: {}
+model_id: Qwen3-4B-Thinking-2507
+model_task: text_generation
+no_timestamp: false
+repeats: 16
+rerun_review: false
+sandbox_manager_config: {}
+sandbox_type: docker
+seed: 42
+stream: true
+timeout: 120000
+use_cache: null
+use_sandbox: false
+work_dir: /home/scbjtfy/evalscope/examples/Qwen3-4B-Thinking-2507/hmmt25/20260309_115941

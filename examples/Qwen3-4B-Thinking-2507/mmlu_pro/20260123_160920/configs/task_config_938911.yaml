@@ -1,0 +1,124 @@
+analysis_report: false
+api_url: http://0.0.0.0:30005/v1/chat/completions
+chat_template: null
+dataset_args:
+  mmlu_pro:
+    aggregation: mean
+    dataset_id: TIGER-Lab/MMLU-Pro
+    default_subset: default
+    description: MMLU-Pro is a benchmark for evaluating language models on multiple-choice
+      questions across various subjects. It includes questions from different domains,
+      where the model must select the correct answer from given options.
+    eval_split: test
+    extra_params: {}
+    few_shot_num: 5
+    few_shot_prompt_template: 'The following are multiple choice questions (with answers)
+      about {subject}. Think step by step and then finish your answer with ''ANSWER:
+      [LETTER]'' (without quotes) where [LETTER] is the correct letter choice.
+
+
+      {examples}
+
+      Answer the following multiple choice question. The last line of your response
+      should be of the following format: ''ANSWER: [LETTER]'' (without quotes) where
+      [LETTER] is one of {letters}. Think step by step before answering.
+
+
+      Question:
+
+      {question}
+
+      Options:
+
+      {choices}
+
+      '
+    few_shot_random: false
+    filters: !!python/object/apply:collections.OrderedDict
+    - - - remove_until
+        - </think>
+    force_redownload: false
+    metric_list:
+    - acc
+    name: mmlu_pro
+    output_types:
+    - generation
+    pretty_name: MMLU-Pro
+    prompt_template: 'Answer the following multiple choice question. The last line
+      of your response should be of the following format: ''ANSWER: [LETTER]'' (without
+      quotes) where [LETTER] is one of {letters}. Think step by step before answering.
+
+
+      Question:
+
+      {question}
+
+      Options:
+
+      {choices}
+
+      '
+    query_template: null
+    review_timeout: null
+    sandbox_config: {}
+    shuffle: false
+    shuffle_choices: false
+    subset_list:
+    - computer science
+    - math
+    - chemistry
+    - engineering
+    - law
+    - biology
+    - health
+    - physics
+    - business
+    - philosophy
+    - economics
+    - other
+    - psychology
+    - history
+    system_prompt: null
+    tags:
+    - MCQ
+    - Knowledge
+    train_split: validation
+dataset_dir: /home/scbjtfy/.cache/modelscope/hub/datasets
+dataset_hub: modelscope
+datasets:
+- mmlu_pro
+debug: false
+eval_backend: Native
+eval_batch_size: 256
+eval_config: null
+eval_type: openai_api
+evalscope_version: 0.0.0_dev
+generation_config:
+  batch_size: 256
+  max_tokens: 4096
+  presence_penalty: 1.5
+  stream: true
+  temperature: 0.6
+  timeout: 60000
+  top_k: 20
+  top_p: 0.95
+ignore_errors: false
+judge_model_args: {}
+judge_strategy: auto
+judge_worker_num: 1
+limit: null
+model: Qwen/Qwen3-4B-Thinking-2507
+model_args: {}
+model_id: Qwen3-4B-Thinking-2507
+model_task: text_generation
+no_timestamp: false
+repeats: 1
+rerun_review: false
+sandbox_manager_config: {}
+sandbox_type: docker
+seed: 42
+stream: true
+timeout: 60000
+use_cache: null
+use_sandbox: false
+work_dir: /home/scbjtfy/evalscope/examples/Qwen3-4B-Thinking-2507/mmlu_pro/20260123_160920

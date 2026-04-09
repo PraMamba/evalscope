@@ -1,0 +1,89 @@
+analysis_report: false
+api_url: http://0.0.0.0:30005/v1/chat/completions
+chat_template: null
+dataset_args:
+  aime25:
+    aggregation: mean_and_pass_at_k
+    dataset_id: opencompass/AIME2025
+    default_subset: default
+    description: The AIME 2025 benchmark is based on problems from the American Invitational
+      Mathematics Examination, a prestigious high school mathematics competition.
+      This benchmark tests a model's ability to solve challenging mathematics problems
+      by generating step-by-step solutions and providing the correct final answer.
+    eval_split: test
+    extra_params: {}
+    few_shot_num: 0
+    few_shot_prompt_template: null
+    few_shot_random: false
+    filters: !!python/object/apply:collections.OrderedDict
+    - - - remove_until
+        - </think>
+    force_redownload: false
+    metric_list:
+    - acc:
+        numeric: true
+    name: aime25
+    output_types:
+    - generation
+    pretty_name: AIME-2025
+    prompt_template: '
+
+      Solve the following math problem step by step. Put your answer inside \boxed{{}}.
+
+
+      {question}
+
+
+      Remember to put your answer inside \boxed{{}}.'
+    query_template: null
+    review_timeout: null
+    sandbox_config: {}
+    shuffle: false
+    shuffle_choices: false
+    subset_list:
+    - AIME2025-I
+    - AIME2025-II
+    system_prompt: null
+    tags:
+    - Math
+    - Reasoning
+    train_split: null
+dataset_dir: /home/scbjtfy/.cache/modelscope/hub/datasets
+dataset_hub: modelscope
+datasets:
+- aime25
+debug: false
+eval_backend: Native
+eval_batch_size: 128
+eval_config: null
+eval_type: openai_api
+evalscope_version: 0.0.0_dev
+generation_config:
+  batch_size: 128
+  max_tokens: 81920
+  presence_penalty: 1.5
+  stream: true
+  temperature: 0.6
+  timeout: 120000
+  top_k: 20
+  top_p: 0.95
+ignore_errors: false
+judge_model_args: {}
+judge_strategy: auto
+judge_worker_num: 1
+limit: null
+model: Qwen/Qwen3-4B-Thinking-2507
+model_args: {}
+model_id: Qwen3-4B-Thinking-2507
+model_task: text_generation
+no_timestamp: false
+repeats: 16
+rerun_review: false
+sandbox_manager_config: {}
+sandbox_type: docker
+seed: 42
+stream: true
+timeout: 120000
+use_cache: null
+use_sandbox: false
+work_dir: /home/scbjtfy/evalscope/examples/Qwen3-4B-Thinking-2507/aime25/20260309_120447

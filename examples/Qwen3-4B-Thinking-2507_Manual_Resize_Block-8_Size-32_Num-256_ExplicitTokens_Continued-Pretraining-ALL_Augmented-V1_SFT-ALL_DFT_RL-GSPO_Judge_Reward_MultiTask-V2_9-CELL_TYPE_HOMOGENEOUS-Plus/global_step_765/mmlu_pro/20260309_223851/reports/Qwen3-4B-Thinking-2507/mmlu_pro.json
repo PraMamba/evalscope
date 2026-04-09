@@ -1,0 +1,99 @@
+{
+    "name": "Qwen3-4B-Thinking-2507@mmlu_pro",
+    "dataset_name": "mmlu_pro",
+    "dataset_pretty_name": "MMLU-Pro",
+    "dataset_description": "MMLU-Pro is a benchmark for evaluating language models on multiple-choice questions across various subjects. It includes questions from different domains, where the model must select the correct answer from given options.",
+    "model_name": "Qwen3-4B-Thinking-2507",
+    "score": 0.2008,
+    "metrics": [
+        {
+            "name": "mean_acc",
+            "num": 12032,
+            "score": 0.2008,
+            "macro_score": 0.2008,
+            "categories": [
+                {
+                    "name": [
+                        "default"
+                    ],
+                    "num": 12032,
+                    "score": 0.2008,
+                    "macro_score": 0.2016,
+                    "subsets": [
+                        {
+                            "name": "computer science",
+                            "score": 0.1976,
+                            "num": 410
+                        },
+                        {
+                            "name": "math",
+                            "score": 0.2117,
+                            "num": 1351
+                        },
+                        {
+                            "name": "chemistry",
+                            "score": 0.1625,
+                            "num": 1132
+                        },
+                        {
+                            "name": "engineering",
+                            "score": 0.1641,
+                            "num": 969
+                        },
+                        {
+                            "name": "law",
+                            "score": 0.1508,
+                            "num": 1101
+                        },
+                        {
+                            "name": "biology",
+                            "score": 0.3208,
+                            "num": 717
+                        },
+                        {
+                            "name": "health",
+                            "score": 0.1724,
+                            "num": 818
+                        },
+                        {
+                            "name": "physics",
+                            "score": 0.1824,
+                            "num": 1299
+                        },
+                        {
+                            "name": "business",
+                            "score": 0.1939,
+                            "num": 789
+                        },
+                        {
+                            "name": "philosophy",
+                            "score": 0.2064,
+                            "num": 499
+                        },
+                        {
+                            "name": "economics",
+                            "score": 0.2974,
+                            "num": 844
+                        },
+                        {
+                            "name": "other",
+                            "score": 0.1851,
+                            "num": 924
+                        },
+                        {
+                            "name": "psychology",
+                            "score": 0.2644,
+                            "num": 798
+                        },
+                        {
+                            "name": "history",
+                            "score": 0.1129,
+                            "num": 381
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "analysis": "N/A"
+}

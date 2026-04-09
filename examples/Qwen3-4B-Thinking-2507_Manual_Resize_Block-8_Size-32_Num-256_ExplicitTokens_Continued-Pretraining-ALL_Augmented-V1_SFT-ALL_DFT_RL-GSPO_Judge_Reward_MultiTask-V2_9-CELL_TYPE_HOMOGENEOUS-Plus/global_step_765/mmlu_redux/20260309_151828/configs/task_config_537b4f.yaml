@@ -1,0 +1,144 @@
+analysis_report: false
+api_url: http://0.0.0.0:30015/v1/chat/completions
+chat_template: null
+dataset_args:
+  mmlu_redux:
+    aggregation: mean
+    dataset_id: AI-ModelScope/mmlu-redux-2.0
+    default_subset: default
+    description: MMLU-Redux is a benchmark for evaluating language models on multiple-choice
+      questions across various subjects. It includes questions from different domains,
+      where the model must select the correct answer from given options. The bad answers
+      are corrected.
+    eval_split: test
+    extra_params: {}
+    few_shot_num: 0
+    few_shot_prompt_template: null
+    few_shot_random: false
+    filters: !!python/object/apply:collections.OrderedDict
+    - - - remove_until
+        - </think>
+    force_redownload: false
+    metric_list:
+    - acc:
+        allow_inclusion: true
+    name: mmlu_redux
+    output_types:
+    - generation
+    pretty_name: MMLU-Redux
+    prompt_template: 'Answer the following multiple choice question. The last line
+      of your response should be of the following format: ''ANSWER: [LETTER]'' (without
+      quotes) where [LETTER] is one of {letters}. Think step by step before answering.
+
+
+      {question}
+
+
+      {choices}'
+    query_template: null
+    review_timeout: null
+    sandbox_config: {}
+    shuffle: false
+    shuffle_choices: false
+    subset_list:
+    - abstract_algebra
+    - anatomy
+    - astronomy
+    - business_ethics
+    - clinical_knowledge
+    - college_biology
+    - college_chemistry
+    - college_computer_science
+    - college_mathematics
+    - college_medicine
+    - college_physics
+    - computer_security
+    - conceptual_physics
+    - econometrics
+    - electrical_engineering
+    - elementary_mathematics
+    - formal_logic
+    - global_facts
+    - high_school_biology
+    - high_school_chemistry
+    - high_school_computer_science
+    - high_school_european_history
+    - high_school_geography
+    - high_school_government_and_politics
+    - high_school_macroeconomics
+    - high_school_mathematics
+    - high_school_microeconomics
+    - high_school_physics
+    - high_school_psychology
+    - high_school_statistics
+    - high_school_us_history
+    - high_school_world_history
+    - human_aging
+    - human_sexuality
+    - international_law
+    - jurisprudence
+    - logical_fallacies
+    - machine_learning
+    - management
+    - marketing
+    - medical_genetics
+    - miscellaneous
+    - moral_disputes
+    - moral_scenarios
+    - nutrition
+    - philosophy
+    - prehistory
+    - professional_accounting
+    - professional_law
+    - professional_medicine
+    - professional_psychology
+    - public_relations
+    - security_studies
+    - sociology
+    - us_foreign_policy
+    - virology
+    - world_religions
+    system_prompt: null
+    tags:
+    - MCQ
+    - Knowledge
+    train_split: null
+dataset_dir: /home/scbjtfy/.cache/modelscope/hub/datasets
+dataset_hub: modelscope
+datasets:
+- mmlu_redux
+debug: false
+eval_backend: Native
+eval_batch_size: 256
+eval_config: null
+eval_type: openai_api
+evalscope_version: 0.0.0_dev
+generation_config:
+  batch_size: 256
+  max_tokens: 4096
+  presence_penalty: 1.5
+  stream: true
+  temperature: 0.6
+  timeout: 60000
+  top_k: 20
+  top_p: 0.95
+ignore_errors: false
+judge_model_args: {}
+judge_strategy: auto
+judge_worker_num: 1
+limit: null
+model: Qwen/Qwen3-4B-Thinking-2507
+model_args: {}
+model_id: Qwen3-4B-Thinking-2507
+model_task: text_generation
+no_timestamp: false
+repeats: 1
+rerun_review: false
+sandbox_manager_config: {}
+sandbox_type: docker
+seed: 42
+stream: true
+timeout: 60000
+use_cache: null
+use_sandbox: false
+work_dir: /home/scbjtfy/evalscope/examples/Qwen3-4B-Thinking-2507_Manual_Resize_Block-8_Size-32_Num-256_ExplicitTokens_Continued-Pretraining-ALL_Augmented-V1_SFT-ALL_DFT_RL-GSPO_Judge_Reward_MultiTask-V2_9-CELL_TYPE_HOMOGENEOUS-Plus/global_step_765/mmlu_redux/20260309_151828

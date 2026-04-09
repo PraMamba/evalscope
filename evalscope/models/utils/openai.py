@@ -1,5 +1,6 @@
 import base64
 import json
+import os
 import re
 from collections import defaultdict
 from copy import copy
@@ -58,6 +59,60 @@ from evalscope.api.tool import ToolCall, ToolChoice, ToolFunction, ToolInfo, par
 from evalscope.utils.url_utils import data_uri_to_base64, file_as_data_uri, is_http_url
 
 BASE_64_DATA_REMOVED = '<base64-data-removed>'
+_REASONING_TAIL_CHARS = 1000
+_SUMMARY_PREFIX = 'In summary, the answer is: '
+_CONCLUSION_ANSWER_RE = re.compile(
+    r'(?:^|[\n\r]|—)\s*I conclude that (?:this cell|the cell) is (?:an? )?'
+    r'(?:\*\*)?([^*\n\r.]+?)(?:\*\*)?(?:[.\n\r]|$)',
+    re.IGNORECASE,
+)
+_BOLD_SPAN_RE = re.compile(r'\*\*([^*]+)\*\*')
+_THINK_BLOCK_RE = re.compile(r'<think(?:\s+[^>]*)?>(.*?)</think>', re.DOTALL | re.IGNORECASE)
+_THINK_OPEN_RE = re.compile(r'<think[^>]*>', re.IGNORECASE)
+_THINK_CLOSE_RE = re.compile(r'</think>', re.IGNORECASE)
+_SUMMARY_PREFIX_RE = re.compile(re.escape(_SUMMARY_PREFIX), re.IGNORECASE)
+
+
+def _clean_reasoning_text(reasoning_text: str) -> str:
+    text = str(reasoning_text or '')
+    if not text:
+        return ''
+
+    match = _THINK_BLOCK_RE.search(text)
+    if match:
+        text = match.group(1)
+
+    close_match = _THINK_CLOSE_RE.search(text)
+    if close_match:
+        text = text[:close_match.start()]
+
+    text = _THINK_OPEN_RE.sub('', text)
+
+    summary_match = _SUMMARY_PREFIX_RE.search(text)
+    if summary_match:
+        text = text[:summary_match.start()]
+
+    return text.strip()
+
+
+def _extract_final_answer_from_reasoning(reasoning_text: str) -> Optional[str]:
+    conclusion = (
+        reasoning_text[-_REASONING_TAIL_CHARS:]
+        if len(reasoning_text) > _REASONING_TAIL_CHARS
+        else reasoning_text
+    )
+
+    matches = list(_CONCLUSION_ANSWER_RE.finditer(conclusion))
+    if matches:
+        return matches[-1].group(1).strip()
+
+    bold_matches = _BOLD_SPAN_RE.findall(conclusion)
+    for candidate in reversed(bold_matches):
+        candidate = candidate.strip()
+        if candidate:
+            return candidate
+
+    return None
 
 
 class OpenAIResponseError(OpenAIError):
@@ -486,17 +541,66 @@ def chat_message_assistant_from_openai(
 ) -> ChatMessageAssistant:
     refusal = getattr(message, 'refusal', None)
     reasoning = getattr(message, 'reasoning_content', None) or getattr(message, 'reasoning', None)
+    msg_content: Union[str, List[Any]] = refusal or message.content or ''
 
-    msg_content = refusal or message.content or ''
+    reasoning_from_parts: Optional[str] = None
+    if isinstance(msg_content, list):
+        text_parts: List[str] = []
+        reasoning_parts: List[str] = []
+        for part in msg_content:
+            if isinstance(part, dict):
+                if 'type' not in part and len(part) == 1:
+                    part = dict(type=list(part.keys())[0], **part)
+                part_type = part.get('type')
+                if part_type == 'text':
+                    text_parts.append(str(part.get('text', '') or ''))
+                elif part_type == 'reasoning':
+                    reasoning_parts.append(str(part.get('reasoning', '') or ''))
+            else:
+                part_type = getattr(part, 'type', None)
+                if part_type == 'text':
+                    text_parts.append(str(getattr(part, 'text', '') or ''))
+                elif part_type == 'reasoning':
+                    reasoning_parts.append(str(getattr(part, 'reasoning', '') or ''))
+
+        msg_content = '\n'.join([t for t in text_parts if t]).strip()
+        if reasoning_parts:
+            reasoning_from_parts = '\n'.join([r for r in reasoning_parts if r]).strip()
+
+    reasoning_text: Optional[str] = None
+    if reasoning is not None:
+        reasoning_text = str(reasoning)
+    elif reasoning_from_parts is not None:
+        reasoning_text = reasoning_from_parts
+    elif isinstance(msg_content, str):
+        _, smuggled_reasoning = parse_content_with_reasoning(msg_content)
+        if smuggled_reasoning:
+            reasoning_text = smuggled_reasoning.reasoning
+        elif '</think>' in msg_content:
+            reasoning_text = msg_content
+
+    if reasoning_text is not None:
+        reasoning_text = _clean_reasoning_text(reasoning_text)
+        use_reasoning_for_judge = os.getenv('USE_REASONING_CONTENT_FOR_JUDGE', 'false').lower() == 'true'
+        if use_reasoning_for_judge:
+            msg_content = reasoning_text
+        else:
+            extracted_answer = _extract_final_answer_from_reasoning(reasoning_text)
+            msg_content = (
+                f'{_SUMMARY_PREFIX}{extracted_answer}' if extracted_answer is not None else reasoning_text
+            )
+
+        reasoning = reasoning_text
+
     if reasoning is not None:
         content: Union[str, List[Content]] = [
             ContentReasoning(reasoning=str(reasoning)),
-            ContentText(text=msg_content, refusal=True if refusal else None),
+            ContentText(text=str(msg_content), refusal=True if refusal else None),
         ]
     elif refusal is not None:
-        content = [ContentText(text=msg_content, refusal=True)]
+        content = [ContentText(text=str(msg_content), refusal=True)]
     else:
-        content = msg_content
+        content = str(msg_content)
 
     return ChatMessageAssistant(
         content=content,
@@ -609,7 +713,8 @@ def _parse_content_with_internal(content: str, ) -> Tuple[str, Optional[JsonValu
 
     Returns:
         tuple[str, JsonValue | None]:
-            - The content string with the <internal>...</internal> tag removed (if present), otherwise the original string.
+            - The content string with the <internal>...</internal> tag removed (if present), otherwise the original
+              string.
             - The decoded and parsed internal value (if present), otherwise None.
 
     Raises:

@@ -1,0 +1,402 @@
+{
+    "name": "Qwen3-4B-Thinking-2507@hmmt25",
+    "dataset_name": "hmmt25",
+    "dataset_pretty_name": "HMMT25",
+    "dataset_description": "HMMT February 2025 (MathArena) is a challenging evaluation benchmark derived from the Harvard-MIT Mathematics Tournament (HMMT) February 2025 competition, one of the most prestigious and difficult high school math contests globally.The benchmark focuses on advanced mathematical reasoning across four primary domains: Algebra, Combinatorics, Geometry, and Number Theory.",
+    "model_name": "Qwen3-4B-Thinking-2507",
+    "score": 0.1021,
+    "metrics": [
+        {
+            "name": "mean_acc",
+            "num": 480,
+            "score": 0.1021,
+            "macro_score": 0.1021,
+            "categories": [
+                {
+                    "name": [
+                        "default"
+                    ],
+                    "num": 480,
+                    "score": 0.1021,
+                    "macro_score": 0.1021,
+                    "subsets": [
+                        {
+                            "name": "default",
+                            "score": 0.1021,
+                            "num": 480
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "mean_acc_pass@1",
+            "num": 480,
+            "score": 0.1021,
+            "macro_score": 0.1021,
+            "categories": [
+                {
+                    "name": [
+                        "default"
+                    ],
+                    "num": 480,
+                    "score": 0.1021,
+                    "macro_score": 0.1021,
+                    "subsets": [
+                        {
+                            "name": "default",
+                            "score": 0.1021,
+                            "num": 480
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "mean_acc_pass@2",
+            "num": 480,
+            "score": 0.1742,
+            "macro_score": 0.1742,
+            "categories": [
+                {
+                    "name": [
+                        "default"
+                    ],
+                    "num": 480,
+                    "score": 0.1742,
+                    "macro_score": 0.1742,
+                    "subsets": [
+                        {
+                            "name": "default",
+                            "score": 0.1742,
+                            "num": 480
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "mean_acc_pass@3",
+            "num": 480,
+            "score": 0.2278,
+            "macro_score": 0.2278,
+            "categories": [
+                {
+                    "name": [
+                        "default"
+                    ],
+                    "num": 480,
+                    "score": 0.2278,
+                    "macro_score": 0.2278,
+                    "subsets": [
+                        {
+                            "name": "default",
+                            "score": 0.2278,
+                            "num": 480
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "mean_acc_pass@4",
+            "num": 480,
+            "score": 0.2697,
+            "macro_score": 0.2697,
+            "categories": [
+                {
+                    "name": [
+                        "default"
+                    ],
+                    "num": 480,
+                    "score": 0.2697,
+                    "macro_score": 0.2697,
+                    "subsets": [
+                        {
+                            "name": "default",
+                            "score": 0.2697,
+                            "num": 480
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "mean_acc_pass@5",
+            "num": 480,
+            "score": 0.3037,
+            "macro_score": 0.3037,
+            "categories": [
+                {
+                    "name": [
+                        "default"
+                    ],
+                    "num": 480,
+                    "score": 0.3037,
+                    "macro_score": 0.3037,
+                    "subsets": [
+                        {
+                            "name": "default",
+                            "score": 0.3037,
+                            "num": 480
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "mean_acc_pass@6",
+            "num": 480,
+            "score": 0.3321,
+            "macro_score": 0.3321,
+            "categories": [
+                {
+                    "name": [
+                        "default"
+                    ],
+                    "num": 480,
+                    "score": 0.3321,
+                    "macro_score": 0.3321,
+                    "subsets": [
+                        {
+                            "name": "default",
+                            "score": 0.3321,
+                            "num": 480
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "mean_acc_pass@7",
+            "num": 480,
+            "score": 0.3562,
+            "macro_score": 0.3562,
+            "categories": [
+                {
+                    "name": [
+                        "default"
+                    ],
+                    "num": 480,
+                    "score": 0.3562,
+                    "macro_score": 0.3562,
+                    "subsets": [
+                        {
+                            "name": "default",
+                            "score": 0.3562,
+                            "num": 480
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "mean_acc_pass@8",
+            "num": 480,
+            "score": 0.3768,
+            "macro_score": 0.3768,
+            "categories": [
+                {
+                    "name": [
+                        "default"
+                    ],
+                    "num": 480,
+                    "score": 0.3768,
+                    "macro_score": 0.3768,
+                    "subsets": [
+                        {
+                            "name": "default",
+                            "score": 0.3768,
+                            "num": 480
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "mean_acc_pass@9",
+            "num": 480,
+            "score": 0.3945,
+            "macro_score": 0.3945,
+            "categories": [
+                {
+                    "name": [
+                        "default"
+                    ],
+                    "num": 480,
+                    "score": 0.3945,
+                    "macro_score": 0.3945,
+                    "subsets": [
+                        {
+                            "name": "default",
+                            "score": 0.3945,
+                            "num": 480
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "mean_acc_pass@10",
+            "num": 480,
+            "score": 0.4098,
+            "macro_score": 0.4098,
+            "categories": [
+                {
+                    "name": [
+                        "default"
+                    ],
+                    "num": 480,
+                    "score": 0.4098,
+                    "macro_score": 0.4098,
+                    "subsets": [
+                        {
+                            "name": "default",
+                            "score": 0.4098,
+                            "num": 480
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "mean_acc_pass@11",
+            "num": 480,
+            "score": 0.423,
+            "macro_score": 0.423,
+            "categories": [
+                {
+                    "name": [
+                        "default"
+                    ],
+                    "num": 480,
+                    "score": 0.423,
+                    "macro_score": 0.423,
+                    "subsets": [
+                        {
+                            "name": "default",
+                            "score": 0.423,
+                            "num": 480
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "mean_acc_pass@12",
+            "num": 480,
+            "score": 0.4345,
+            "macro_score": 0.4345,
+            "categories": [
+                {
+                    "name": [
+                        "default"
+                    ],
+                    "num": 480,
+                    "score": 0.4345,
+                    "macro_score": 0.4345,
+                    "subsets": [
+                        {
+                            "name": "default",
+                            "score": 0.4345,
+                            "num": 480
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "mean_acc_pass@13",
+            "num": 480,
+            "score": 0.4445,
+            "macro_score": 0.4445,
+            "categories": [
+                {
+                    "name": [
+                        "default"
+                    ],
+                    "num": 480,
+                    "score": 0.4445,
+                    "macro_score": 0.4445,
+                    "subsets": [
+                        {
+                            "name": "default",
+                            "score": 0.4445,
+                            "num": 480
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "mean_acc_pass@14",
+            "num": 480,
+            "score": 0.4531,
+            "macro_score": 0.4531,
+            "categories": [
+                {
+                    "name": [
+                        "default"
+                    ],
+                    "num": 480,
+                    "score": 0.4531,
+                    "macro_score": 0.4531,
+                    "subsets": [
+                        {
+                            "name": "default",
+                            "score": 0.4531,
+                            "num": 480
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "mean_acc_pass@15",
+            "num": 480,
+            "score": 0.4604,
+            "macro_score": 0.4604,
+            "categories": [
+                {
+                    "name": [
+                        "default"
+                    ],
+                    "num": 480,
+                    "score": 0.4604,
+                    "macro_score": 0.4604,
+                    "subsets": [
+                        {
+                            "name": "default",
+                            "score": 0.4604,
+                            "num": 480
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "mean_acc_pass@16",
+            "num": 480,
+            "score": 0.4667,
+            "macro_score": 0.4667,
+            "categories": [
+                {
+                    "name": [
+                        "default"
+                    ],
+                    "num": 480,
+                    "score": 0.4667,
+                    "macro_score": 0.4667,
+                    "subsets": [
+                        {
+                            "name": "default",
+                            "score": 0.4667,
+                            "num": 480
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "analysis": "N/A"
+}
